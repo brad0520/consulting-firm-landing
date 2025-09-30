@@ -3,537 +3,229 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-export default function CorporateLanding() {
-  const [isVisible, setIsVisible] = useState(false)
+export default function ConsultingHomePage() {
+  const [activeTestimonial, setActiveTestimonial] = useState(0)
 
   useEffect(() => {
-    setIsVisible(true)
-  }, [])
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
-
-  const handleButtonClick = (buttonText: string) => {
-    if (buttonText.includes('채용')) {
-      alert('채용 페이지로 이동합니다. 여러분의 지원을 기다리고 있습니다!')
-    } else if (buttonText.includes('투어')) {
-      alert('회사 투어 신청이 접수되었습니다. 곧 연락드리겠습니다!')
-    }
-  }
-
-  useEffect(() => {
-    // 스크롤 시 요소 나타나는 효과
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active')
-        }
-      })
-    }, observerOptions)
-
-    document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
-      observer.observe(el)
-    })
-
-
-    // 통계 카운터 애니메이션
-    const animateCounter = (element: HTMLElement, target: number, suffix = '') => {
-      let current = 0
-      const increment = target / 100
-      const timer = setInterval(() => {
-        current += increment
-        if (current >= target) {
-          current = target
-          clearInterval(timer)
-        }
-
-        let displayValue: string
-        if (target >= 1000000) {
-          displayValue = (current / 1000000).toFixed(1) + 'M'
-        } else if (target >= 1000) {
-          displayValue = (current / 1000).toFixed(0) + 'K'
-        } else {
-          displayValue = Math.floor(current).toString()
-        }
-
-        element.textContent = displayValue + suffix
-      }, 20)
-    }
-
-    // 통계 섹션이 보일 때 카운터 시작
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const statNumbers = entry.target.querySelectorAll('.stat-number')
-
-          // 각 통계 숫자에 애니메이션 적용
-          if (statNumbers[0]) animateCounter(statNumbers[0] as HTMLElement, 15, '년')
-          if (statNumbers[1]) animateCounter(statNumbers[1] as HTMLElement, 2000000, '+')
-          if (statNumbers[2]) animateCounter(statNumbers[2] as HTMLElement, 100, '%')
-
-          statsObserver.unobserve(entry.target)
-        }
-      })
-    }, { threshold: 0.5 })
-
-    const heroStats = document.querySelector('.hero-stats')
-    if (heroStats) {
-      statsObserver.observe(heroStats)
-    }
-
-    return () => {
-      observer.disconnect()
-    }
+    const interval = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % 3)
+    }, 5000)
+    return () => clearInterval(interval)
   }, [])
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      backgroundColor: '#ffffff',
-      color: '#1d1d1f',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif',
-      overflowX: 'hidden',
-      margin: 0,
-      padding: 0
-    }}>
-      {/* 글로벌 스타일 */}
-      <style jsx global>{`
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-
-        body {
-          margin: 0;
-          padding: 0;
-          font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-          line-height: 1.6;
-          color: #1d1d1f;
-          background-color: #ffffff;
-          overflow-x: hidden;
-        }
-
-        .fade-in {
-          opacity: 0;
-          transform: translateY(40px);
-          transition: all 0.8s ease;
-        }
-
-        .fade-in.active {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .slide-in-left {
-          opacity: 0;
-          transform: translateX(-50px);
-          transition: all 0.8s ease;
-        }
-
-        .slide-in-left.active {
-          opacity: 1;
-          transform: translateX(0);
-        }
-
-        .slide-in-right {
-          opacity: 0;
-          transform: translateX(50px);
-          transition: all 0.8s ease;
-        }
-
-        .slide-in-right.active {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      `}</style>
-
-
+    <main style={{ paddingTop: '80px' }}>
       {/* Hero Section */}
-      <section id="home" style={{
-        background: 'linear-gradient(135deg, #f5f5f7 0%, #fafafa 100%)',
-        padding: '120px 0 100px',
-        textAlign: 'center',
-        position: 'relative',
-        overflow: 'hidden'
+      <section style={{
+        padding: '140px 0 100px',
+        background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)',
+        position: 'relative'
       }}>
-        <div style={{
-          content: '',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: `radial-gradient(circle at 70% 30%, rgba(0, 175, 122, 0.03) 0%, transparent 50%),
-                      radial-gradient(circle at 30% 70%, rgba(255, 149, 0, 0.03) 0%, transparent 50%)`
-        }}></div>
-
-        <div style={{
-          position: 'relative',
-          zIndex: 2,
-          maxWidth: '800px',
-          margin: '0 auto'
-        }}>
-          <h1 className="fade-in" style={{
-            fontSize: '4rem',
-            fontWeight: '700',
-            marginBottom: '1.5rem',
-            color: '#1d1d1f',
-            lineHeight: '1.08'
-          }}>
-            더 나은 세상을<br/>만들어가는 기업
-          </h1>
-          <p className="fade-in" style={{
-            fontSize: '1.75rem',
-            fontWeight: '400',
-            color: '#86868b',
-            marginBottom: '3rem',
-            lineHeight: '1.3'
-          }}>
-            혁신적인 기술과 인간 중심의 가치로<br/>
-            지속 가능한 미래를 설계합니다
-          </p>
-
-          <div className="hero-stats" style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '3rem',
-            marginTop: '4rem',
-            maxWidth: '800px',
-            marginLeft: 'auto',
-            marginRight: 'auto'
-          }}>
-            <div className="fade-in" style={{ textAlign: 'center' }}>
-              <span className="stat-number" style={{
-                fontSize: '3.5rem',
-                fontWeight: '700',
-                color: '#00af7a',
-                marginBottom: '0.5rem',
-                display: 'block'
-              }}>15년</span>
-              <div style={{
-                fontSize: '1.1rem',
-                color: '#86868b',
-                fontWeight: '400'
-              }}>혁신의 역사</div>
-            </div>
-            <div className="fade-in" style={{ textAlign: 'center' }}>
-              <span className="stat-number" style={{
-                fontSize: '3.5rem',
-                fontWeight: '700',
-                color: '#00af7a',
-                marginBottom: '0.5rem',
-                display: 'block'
-              }}>2M+</span>
-              <div style={{
-                fontSize: '1.1rem',
-                color: '#86868b',
-                fontWeight: '400'
-              }}>고객의 신뢰</div>
-            </div>
-            <div className="fade-in" style={{ textAlign: 'center' }}>
-              <span className="stat-number" style={{
-                fontSize: '3.5rem',
-                fontWeight: '700',
-                color: '#00af7a',
-                marginBottom: '0.5rem',
-                display: 'block'
-              }}>100%</span>
-              <div style={{
-                fontSize: '1.1rem',
-                color: '#86868b',
-                fontWeight: '400'
-              }}>친환경 에너지</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission Section */}
-      <section id="mission" style={{
-        padding: '120px 0',
-        background: '#ffffff'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 20px'
-        }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
           <div style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
-            gap: '6rem',
+            gap: '4rem',
             alignItems: 'center'
           }}>
-            <div className="slide-in-left">
-              <h2 style={{
-                fontSize: '3rem',
+            <div>
+              <h1 style={{
+                fontSize: '3.2rem',
                 fontWeight: '700',
+                marginBottom: '1.5rem',
+                color: '#2c3e50',
+                lineHeight: '1.2'
+              }}>
+                비즈니스 혁신의<br />
+                파트너
+              </h1>
+              <p style={{
+                fontSize: '1.3rem',
+                color: '#7f8c8d',
                 marginBottom: '2rem',
-                color: '#1d1d1f',
-                lineHeight: '1.1'
+                fontWeight: '300'
               }}>
-                우리의 미션
-              </h2>
-              <p style={{
-                fontSize: '1.25rem',
-                color: '#86868b',
-                lineHeight: '1.5',
-                marginBottom: '2rem'
-              }}>
-                기술이 사람을 위해 존재한다는 믿음으로,
-                모든 개인이 더 나은 삶을 살 수 있도록
-                돕는 혁신적인 솔루션을 만듭니다.
+                ProConsult와 함께하세요
               </p>
               <p style={{
-                fontSize: '1.25rem',
-                color: '#86868b',
-                lineHeight: '1.5',
-                marginBottom: '2rem'
+                fontSize: '1.1rem',
+                color: '#5d6d7e',
+                lineHeight: '1.7',
+                marginBottom: '3rem'
               }}>
-                지속 가능하고 포용적인 미래를 위해
-                우리의 모든 제품과 서비스는
-                환경과 사회에 긍정적인 영향을 미치도록 설계됩니다.
+                15년간 축적된 전문성과 검증된 방법론으로 
+                귀사의 성장을 가속화합니다. 
+                전략 수립부터 실행까지, 모든 과정에서 
+                최고의 솔루션을 제공합니다.
               </p>
+
+              {/* Stats */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '2rem',
+                marginBottom: '3rem'
+              }}>
+                {[
+                  { number: '500+', label: '프로젝트' },
+                  { number: '98%', label: '고객 만족도' },
+                  { number: '15년', label: '업계 경력' }
+                ].map((stat, idx) => (
+                  <div key={idx} style={{
+                    textAlign: 'center',
+                    padding: '1.5rem',
+                    background: 'white',
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.05)',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    <div style={{
+                      fontSize: '2.2rem',
+                      fontWeight: '700',
+                      color: '#3498db',
+                      marginBottom: '0.5rem'
+                    }}>
+                      {stat.number}
+                    </div>
+                    <div style={{ fontSize: '0.9rem', color: '#7f8c8d' }}>
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA Buttons */}
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <Link href="/contact" style={{
+                  background: '#3498db',
+                  color: 'white',
+                  padding: '16px 32px',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  fontWeight: '600',
+                  fontSize: '1.1rem',
+                  display: 'inline-block',
+                  transition: 'all 0.3s ease'
+                }}>
+                  무료 상담 신청
+                </Link>
+                <Link href="/services" style={{
+                  background: 'white',
+                  color: '#3498db',
+                  padding: '16px 32px',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  fontWeight: '600',
+                  fontSize: '1.1rem',
+                  display: 'inline-block',
+                  border: '2px solid #3498db',
+                  transition: 'all 0.3s ease'
+                }}>
+                  서비스 보기
+                </Link>
+              </div>
             </div>
-            <div className="slide-in-right" style={{
-              background: 'linear-gradient(135deg, #00af7a 0%, #30d158 100%)',
+
+            {/* Hero Visual */}
+            <div style={{
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               borderRadius: '20px',
-              height: '400px',
+              padding: '3rem',
+              color: 'white',
+              position: 'relative',
+              minHeight: '500px',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              fontSize: '2rem',
-              fontWeight: '600',
-              position: 'relative',
-              overflow: 'hidden'
+              justifyContent: 'center'
             }}>
-              <div style={{
-                content: '',
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundImage: `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><circle cx="100" cy="100" r="50" fill="rgba(255,255,255,0.1)"/><circle cx="300" cy="150" r="30" fill="rgba(255,255,255,0.08)"/><circle cx="200" cy="300" r="40" fill="rgba(255,255,255,0.06)"/></svg>')`
-              }}></div>
-              미래 비전
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>📊</div>
+                <h3 style={{ fontSize: '1.8rem', fontWeight: '600', marginBottom: '1rem' }}>
+                  데이터 기반 컨설팅
+                </h3>
+                <p style={{ fontSize: '1.1rem', opacity: 0.9 }}>
+                  전략적 인사이트로<br />
+                  비즈니스 가치를 창출합니다
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section id="values" style={{
-        padding: '120px 0',
-        background: '#f5f5f7'
+      {/* Services Section */}
+      <section id="services" style={{
+        padding: '100px 0',
+        background: 'white'
       }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 20px'
-        }}>
-          <h2 className="fade-in" style={{
-            textAlign: 'center',
-            fontSize: '3rem',
-            fontWeight: '700',
-            marginBottom: '4rem',
-            color: '#1d1d1f'
-          }}>
-            핵심 가치
-          </h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-            gap: '3rem'
-          }}>
-            {[
-              {
-                icon: '🔥',
-                title: '혁신',
-                description: '끊임없는 도전과 창의적 사고로 불가능을 가능하게 만들어 나갑니다. 기존의 틀을 깨고 새로운 가능성을 열어갑니다.',
-                color: 'linear-gradient(135deg, #ff9500 0%, #ff6b00 100%)'
-              },
-              {
-                icon: '🌱',
-                title: '지속가능성',
-                description: '환경을 보호하고 지속 가능한 미래를 만들기 위해 모든 사업 활동에서 친환경적 선택을 우선시합니다.',
-                color: 'linear-gradient(135deg, #30d158 0%, #00af7a 100%)'
-              },
-              {
-                icon: '🤝',
-                title: '포용성',
-                description: '다양성을 존중하고 모든 사람이 동등한 기회를 가질 수 있는 포용적인 환경을 조성하고 유지합니다.',
-                color: 'linear-gradient(135deg, #007aff 0%, #0051d5 100%)'
-              },
-              {
-                icon: '⭐',
-                title: '품질',
-                description: '타협하지 않는 품질 기준으로 고객의 기대를 뛰어넘는 제품과 서비스를 제공합니다.',
-                color: 'linear-gradient(135deg, #ff3b30 0%, #d70015 100%)'
-              }
-            ].map((value, index) => (
-              <div key={index} className="fade-in" style={{
-                background: '#ffffff',
-                borderRadius: '20px',
-                padding: '3rem 2.5rem',
-                textAlign: 'center',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
-                transition: 'all 0.3s ease',
-                border: '1px solid rgba(0, 0, 0, 0.04)'
-              }} onMouseOver={(e) => {
-                e.currentTarget.style.transform = 'translateY(-8px)'
-                e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)'
-              }} onMouseOut={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.05)'
-              }}>
-                <div style={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '50%',
-                  margin: '0 auto 2rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '2.5rem',
-                  background: value.color,
-                  color: 'white'
-                }}>
-                  {value.icon}
-                </div>
-                <h3 style={{
-                  fontSize: '1.75rem',
-                  fontWeight: '600',
-                  marginBottom: '1.5rem',
-                  color: '#1d1d1f'
-                }}>
-                  {value.title}
-                </h3>
-                <p style={{
-                  color: '#86868b',
-                  lineHeight: '1.6',
-                  fontSize: '1.1rem'
-                }}>
-                  {value.description}
-                </p>
-              </div>
-            ))}
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <div style={{
+              fontSize: '0.9rem',
+              color: '#3498db',
+              fontWeight: '600',
+              marginBottom: '0.5rem',
+              textTransform: 'uppercase',
+              letterSpacing: '2px'
+            }}>
+              Our Services
+            </div>
+            <h2 style={{
+              fontSize: '2.5rem',
+              fontWeight: '700',
+              color: '#2c3e50',
+              marginBottom: '1rem'
+            }}>
+              전문 컨설팅 서비스
+            </h2>
+            <p style={{ fontSize: '1.1rem', color: '#7f8c8d', maxWidth: '600px', margin: '0 auto' }}>
+              다양한 산업 분야에서의 경험을 바탕으로<br />
+              최적화된 솔루션을 제공합니다
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* Team Section */}
-      <section id="team" style={{
-        padding: '120px 0',
-        background: '#ffffff'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 20px'
-        }}>
-          <h2 className="fade-in" style={{
-            textAlign: 'center',
-            fontSize: '3rem',
-            fontWeight: '700',
-            marginBottom: '4rem',
-            color: '#1d1d1f'
-          }}>
-            리더십 팀
-          </h2>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '3rem',
-            marginTop: '4rem'
+            gap: '2rem'
           }}>
             {[
-              {
-                emoji: '👨‍💼',
-                name: '김준호',
-                role: '최고경영자 (CEO)',
-                bio: '15년 간의 기술 업계 경험을 바탕으로 혁신적인 제품 개발과 지속 가능한 성장을 이끌고 있습니다.'
-              },
-              {
-                emoji: '👩‍💼',
-                name: '이소영',
-                role: '최고기술책임자 (CTO)',
-                bio: 'AI와 머신러닝 분야의 전문가로, 차세대 기술 개발과 디지털 트랜스포메이션을 주도하고 있습니다.'
-              },
-              {
-                emoji: '👨‍💻',
-                name: '박민수',
-                role: '최고마케팅책임자 (CMO)',
-                bio: '브랜드 전략과 고객 경험 혁신을 통해 시장에서의 독보적인 위치를 구축하고 있습니다.'
-              },
-              {
-                emoji: '👩‍⚖️',
-                name: '정미경',
-                role: '최고재무책임자 (CFO)',
-                bio: '금융 전략과 투자 계획을 통해 회사의 안정적인 성장과 장기적인 가치 창출을 담당하고 있습니다.'
-              }
-            ].map((member, index) => (
-              <div key={index} className="fade-in" style={{
-                textAlign: 'center',
-                background: '#fbfbfd',
-                borderRadius: '20px',
-                padding: '3rem 2rem',
+              { icon: '📈', title: '경영 전략', desc: '기업의 비전과 목표를 달성하기 위한 전략적 로드맵을 수립합니다' },
+              { icon: '⚙️', title: '프로세스 혁신', desc: '업무 프로세스를 분석하고 최적화하여 효율성을 극대화합니다' },
+              { icon: '🎯', title: '성과 관리', desc: 'KPI 설정부터 성과 측정까지 체계적인 관리 시스템을 구축합니다' },
+              { icon: '👥', title: '조직 개발', desc: '조직 구조 설계와 인재 육성으로 경쟁력을 강화합니다' },
+              { icon: '💻', title: '디지털 전환', desc: '최신 기술을 활용한 디지털 혁신 전략을 제시합니다' },
+              { icon: '💰', title: '재무 컨설팅', desc: '재무 구조 분석과 최적화로 건전한 경영을 지원합니다' }
+            ].map((service, idx) => (
+              <div key={idx} style={{
+                background: 'white',
+                padding: '2.5rem',
+                borderRadius: '16px',
+                border: '1px solid #e8e8e8',
                 transition: 'all 0.3s ease',
-                border: '1px solid rgba(0, 0, 0, 0.04)'
-              }} onMouseOver={(e) => {
-                e.currentTarget.style.transform = 'translateY(-5px)'
-                e.currentTarget.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.08)'
-              }} onMouseOut={(e) => {
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-8px)'
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.1)'
+                e.currentTarget.style.borderColor = '#3498db'
+              }}
+              onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)'
                 e.currentTarget.style.boxShadow = 'none'
+                e.currentTarget.style.borderColor = '#e8e8e8'
               }}>
-                <div style={{
-                  width: '120px',
-                  height: '120px',
-                  borderRadius: '50%',
-                  margin: '0 auto 1.5rem',
-                  background: 'linear-gradient(135deg, #86868b, #d1d1d6)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '2.5rem',
-                  color: 'white'
-                }}>
-                  {member.emoji}
-                </div>
-                <div style={{
+                <div style={{ fontSize: '3rem', marginBottom: '1.5rem' }}>{service.icon}</div>
+                <h3 style={{
                   fontSize: '1.5rem',
                   fontWeight: '600',
-                  marginBottom: '0.5rem',
-                  color: '#1d1d1f'
+                  color: '#2c3e50',
+                  marginBottom: '1rem'
                 }}>
-                  {member.name}
-                </div>
-                <div style={{
-                  fontSize: '1rem',
-                  color: '#0071e3',
-                  marginBottom: '1rem',
-                  fontWeight: '500'
-                }}>
-                  {member.role}
-                </div>
-                <p style={{
-                  color: '#86868b',
-                  lineHeight: '1.5',
-                  fontSize: '0.95rem'
-                }}>
-                  {member.bio}
+                  {service.title}
+                </h3>
+                <p style={{ color: '#7f8c8d', lineHeight: '1.6' }}>
+                  {service.desc}
                 </p>
               </div>
             ))}
@@ -541,170 +233,234 @@ export default function CorporateLanding() {
         </div>
       </section>
 
-      {/* Impact Section */}
-      <section id="impact" style={{
-        padding: '120px 0',
-        background: 'linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%)',
-        color: 'white'
+      {/* Case Studies Section */}
+      <section style={{
+        padding: '100px 0',
+        background: '#f8f9fa'
       }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 20px'
-        }}>
-          <h2 className="fade-in" style={{
-            textAlign: 'center',
-            fontSize: '3rem',
-            fontWeight: '700',
-            marginBottom: '4rem',
-            color: 'white'
-          }}>
-            사회적 영향
-          </h2>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <div style={{
+              fontSize: '0.9rem',
+              color: '#3498db',
+              fontWeight: '600',
+              marginBottom: '0.5rem',
+              textTransform: 'uppercase',
+              letterSpacing: '2px'
+            }}>
+              Success Stories
+            </div>
+            <h2 style={{
+              fontSize: '2.5rem',
+              fontWeight: '700',
+              color: '#2c3e50',
+              marginBottom: '1rem'
+            }}>
+              성공 사례
+            </h2>
+          </div>
+
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-            gap: '3rem',
-            marginTop: '4rem'
+            gap: '2rem'
           }}>
             {[
               {
-                number: '100%',
-                title: '재생 에너지',
-                description: '모든 사업장에서 100% 재생 가능 에너지를 사용하여 탄소 중립을 실현하고 있습니다.'
+                company: 'A전자',
+                category: '제조업',
+                result: '매출 40% 증가',
+                desc: '디지털 전환 프로젝트를 통해 생산성 향상 및 매출 대폭 증가'
               },
               {
-                number: '50만',
-                title: '교육 수혜자',
-                description: '디지털 교육 프로그램을 통해 50만 명 이상의 학생들에게 기술 교육 기회를 제공했습니다.'
+                company: 'B금융',
+                category: '금융업',
+                result: '비용 30% 절감',
+                desc: '프로세스 혁신으로 업무 효율성 개선 및 비용 절감 달성'
               },
               {
-                number: '95%',
-                title: '재활용률',
-                description: '제품 생산 과정에서 발생하는 폐기물의 95%를 재활용하여 순환 경제에 기여하고 있습니다.'
+                company: 'C유통',
+                category: '유통업',
+                result: '고객만족도 95%',
+                desc: '고객 경험 개선 프로젝트로 고객 만족도 크게 향상'
               }
-            ].map((impact, index) => (
-              <div key={index} className="fade-in" style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '20px',
-                padding: '3rem 2.5rem',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+            ].map((caseItem, idx) => (
+              <div key={idx} style={{
+                background: 'white',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
                 transition: 'all 0.3s ease'
-              }} onMouseOver={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'
-                e.currentTarget.style.transform = 'translateY(-5px)'
-              }} onMouseOut={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
-                e.currentTarget.style.transform = 'translateY(0)'
               }}>
                 <div style={{
-                  fontSize: '3rem',
-                  fontWeight: '700',
-                  color: '#30d158',
-                  marginBottom: '1rem'
-                }}>
-                  {impact.number}
-                </div>
-                <div style={{
-                  fontSize: '1.5rem',
-                  fontWeight: '600',
-                  marginBottom: '1rem',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  padding: '3rem 2rem',
                   color: 'white'
                 }}>
-                  {impact.title}
+                  <div style={{
+                    fontSize: '0.85rem',
+                    opacity: 0.9,
+                    marginBottom: '0.5rem'
+                  }}>
+                    {caseItem.category}
+                  </div>
+                  <h3 style={{ fontSize: '1.8rem', fontWeight: '700', marginBottom: '1rem' }}>
+                    {caseItem.company}
+                  </h3>
+                  <div style={{
+                    fontSize: '1.5rem',
+                    fontWeight: '600',
+                    color: '#a8e6cf'
+                  }}>
+                    {caseItem.result}
+                  </div>
                 </div>
-                <p style={{
-                  color: 'rgba(255, 255, 255, 0.8)',
-                  lineHeight: '1.6'
-                }}>
-                  {impact.description}
-                </p>
+                <div style={{ padding: '2rem' }}>
+                  <p style={{ color: '#5d6d7e', lineHeight: '1.6' }}>
+                    {caseItem.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" style={{
-        padding: '120px 0',
-        background: '#f5f5f7',
-        textAlign: 'center'
+      {/* Testimonials Section */}
+      <section style={{
+        padding: '100px 0',
+        background: 'white'
       }}>
-        <div style={{
-          maxWidth: '600px',
-          margin: '0 auto',
-          padding: '0 20px'
-        }}>
-          <h2 className="fade-in" style={{
-            fontSize: '3rem',
-            fontWeight: '700',
-            marginBottom: '2rem',
-            color: '#1d1d1f'
-          }}>
-            함께 성장할 인재를 찾습니다
-          </h2>
-          <p className="fade-in" style={{
-            fontSize: '1.25rem',
-            color: '#86868b',
-            marginBottom: '3rem',
-            lineHeight: '1.4'
-          }}>
-            혁신적인 환경에서 자신의 잠재력을 발휘하고<br/>
-            세상을 변화시키는 일에 참여하세요
-          </p>
-          <div className="fade-in" style={{
-            display: 'flex',
-            gap: '1.5rem',
-            justifyContent: 'center',
-            flexWrap: 'wrap'
-          }}>
-            <button onClick={() => handleButtonClick('채용 정보 보기')} style={{
-              background: '#0071e3',
-              color: 'white',
-              padding: '14px 28px',
-              border: 'none',
-              borderRadius: '25px',
-              fontSize: '1rem',
-              fontWeight: '500',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              textDecoration: 'none',
-              display: 'inline-block'
-            }} onMouseOver={(e) => {
-              e.currentTarget.style.background = '#0077ed'
-              e.currentTarget.style.transform = 'translateY(-1px)'
-            }} onMouseOut={(e) => {
-              e.currentTarget.style.background = '#0071e3'
-              e.currentTarget.style.transform = 'translateY(0)'
+        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 20px', textAlign: 'center' }}>
+          <div style={{ marginBottom: '4rem' }}>
+            <div style={{
+              fontSize: '0.9rem',
+              color: '#3498db',
+              fontWeight: '600',
+              marginBottom: '0.5rem',
+              textTransform: 'uppercase',
+              letterSpacing: '2px'
             }}>
-              채용 정보 보기
-            </button>
-            <button onClick={() => handleButtonClick('회사 투어 신청')} style={{
-              color: '#0071e3',
-              border: '2px solid #0071e3',
-              background: 'transparent',
-              padding: '12px 26px',
-              borderRadius: '25px',
-              fontSize: '1rem',
-              fontWeight: '500',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              textDecoration: 'none',
-              display: 'inline-block'
-            }} onMouseOver={(e) => {
-              e.currentTarget.style.background = '#0071e3'
-              e.currentTarget.style.color = 'white'
-            }} onMouseOut={(e) => {
-              e.currentTarget.style.background = 'transparent'
-              e.currentTarget.style.color = '#0071e3'
+              Client Reviews
+            </div>
+            <h2 style={{
+              fontSize: '2.5rem',
+              fontWeight: '700',
+              color: '#2c3e50'
             }}>
-              회사 투어 신청
-            </button>
+              고객 추천사
+            </h2>
+          </div>
+
+          {/* Testimonial Carousel */}
+          <div style={{ position: 'relative' }}>
+            {[
+              {
+                text: 'ProConsult의 컨설팅은 우리 회사의 전환점이 되었습니다. 명확한 전략과 실행력이 인상적이었습니다.',
+                author: '김대표',
+                company: 'A전자 CEO'
+              },
+              {
+                text: '체계적인 접근과 깊이 있는 분석으로 실질적인 성과를 만들어냈습니다. 신뢰할 수 있는 파트너입니다.',
+                author: '이상무',
+                company: 'B금융 상무'
+              },
+              {
+                text: '팀의 전문성과 열정이 프로젝트 성공의 핵심이었습니다. 다음 프로젝트도 함께하고 싶습니다.',
+                author: '박부장',
+                company: 'C유통 부장'
+              }
+            ].map((testimonial, idx) => (
+              <div
+                key={idx}
+                style={{
+                  display: activeTestimonial === idx ? 'block' : 'none',
+                  padding: '3rem',
+                  background: '#f8f9fa',
+                  borderRadius: '16px',
+                  minHeight: '250px'
+                }}
+              >
+                <p style={{
+                  fontSize: '1.3rem',
+                  color: '#2c3e50',
+                  lineHeight: '1.8',
+                  marginBottom: '2rem',
+                  fontStyle: 'italic'
+                }}>
+                  "{testimonial.text}"
+                </p>
+                <div>
+                  <div style={{ fontSize: '1.1rem', fontWeight: '600', color: '#2c3e50' }}>
+                    {testimonial.author}
+                  </div>
+                  <div style={{ fontSize: '0.95rem', color: '#7f8c8d' }}>
+                    {testimonial.company}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Dots */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '2rem' }}>
+            {[0, 1, 2].map((idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveTestimonial(idx)}
+                style={{
+                  width: '12px',
+                  height: '12px',
+                  borderRadius: '50%',
+                  border: 'none',
+                  background: activeTestimonial === idx ? '#3498db' : '#d5d5d5',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+              />
+            ))}
           </div>
         </div>
       </section>
-    </div>
+
+      {/* CTA Section */}
+      <section style={{
+        padding: '100px 0',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        color: 'white',
+        textAlign: 'center'
+      }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 20px' }}>
+          <h2 style={{
+            fontSize: '2.5rem',
+            fontWeight: '700',
+            marginBottom: '1.5rem'
+          }}>
+            지금 바로 시작하세요
+          </h2>
+          <p style={{
+            fontSize: '1.2rem',
+            marginBottom: '3rem',
+            opacity: 0.95
+          }}>
+            무료 상담을 통해 귀사에 최적화된<br />
+            솔루션을 확인해보세요
+          </p>
+          <Link href="/contact" style={{
+            background: 'white',
+            color: '#667eea',
+            padding: '18px 40px',
+            borderRadius: '8px',
+            textDecoration: 'none',
+            fontWeight: '600',
+            fontSize: '1.1rem',
+            display: 'inline-block',
+            transition: 'all 0.3s ease'
+          }}>
+            무료 상담 신청하기
+          </Link>
+        </div>
+      </section>
+    </main>
   )
 }

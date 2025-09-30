@@ -1,66 +1,40 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-export default function About() {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
-
+export default function AboutPage() {
   return (
-    <div style={{
-      minHeight: '100vh',
-      backgroundColor: '#ffffff',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-      opacity: isVisible ? 1 : 0,
-      transition: 'opacity 0.8s ease-in-out'
-    }}>
+    <main style={{ paddingTop: '80px' }}>
       {/* Hero Section */}
       <section style={{
-        padding: '120px 0 80px',
-        background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)',
+        padding: '100px 0',
+        background: 'linear-gradient(135deg, #34495e 0%, #2c3e50 100%)',
+        color: 'white',
         textAlign: 'center'
       }}>
-        <div style={{
-          maxWidth: '800px',
-          margin: '0 auto',
-          padding: '0 1.5rem'
-        }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
           <h1 style={{
-            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-            fontWeight: '600',
-            lineHeight: '1.1',
-            marginBottom: '1.5rem',
-            color: '#1d1d1f',
-            letterSpacing: '-0.03em'
+            fontSize: '3rem',
+            fontWeight: '700',
+            marginBottom: '1.5rem'
           }}>
-            혁신을 통해 세상을 바꿉니다
+            ProConsult 소개
           </h1>
           <p style={{
-            fontSize: '1.25rem',
-            color: '#6e6e73',
-            lineHeight: '1.6',
-            maxWidth: '600px',
+            fontSize: '1.3rem',
+            opacity: 0.95,
+            maxWidth: '700px',
             margin: '0 auto'
           }}>
-            우리는 기술의 한계를 뛰어넘어 인류의 삶을 더 나은 방향으로 이끌어가는 것을 사명으로 합니다.
+            15년간의 풍부한 경험과 검증된 방법론으로<br />
+            고객의 비즈니스 성장을 이끌어내는 전문 파트너
           </p>
         </div>
       </section>
 
-      {/* Story Section */}
-      <section style={{
-        padding: '80px 0',
-        backgroundColor: '#fbfbfd'
-      }}>
-        <div style={{
-          maxWidth: '1000px',
-          margin: '0 auto',
-          padding: '0 1.5rem'
-        }}>
+      {/* Company Info */}
+      <section style={{ padding: '100px 0', background: 'white' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
           <div style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
@@ -70,179 +44,124 @@ export default function About() {
             <div>
               <h2 style={{
                 fontSize: '2.5rem',
-                fontWeight: '600',
-                color: '#1d1d1f',
-                marginBottom: '1.5rem',
-                lineHeight: '1.2'
+                fontWeight: '700',
+                color: '#2c3e50',
+                marginBottom: '1.5rem'
               }}>
-                우리의 여정
+                비즈니스 혁신의<br />
+                믿을 수 있는 파트너
               </h2>
               <p style={{
                 fontSize: '1.1rem',
-                lineHeight: '1.7',
-                color: '#515154',
-                marginBottom: '1.5rem'
+                color: '#5d6d7e',
+                lineHeight: '1.8',
+                marginBottom: '2rem'
               }}>
-                2010년 설립 이래, InnovateCorp는 지속적인 혁신을 통해 기술 업계를 선도해왔습니다.
-                우리는 단순히 제품을 만드는 것이 아니라, 사람들의 일상을 변화시키는 경험을 창조합니다.
+                ProConsult는 2010년 설립 이후 다양한 산업 분야에서 500개 이상의 
+                프로젝트를 성공적으로 수행해왔습니다. 우리는 단순한 컨설팅을 
+                넘어서 고객사의 실질적인 성과 창출에 집중합니다.
               </p>
               <p style={{
                 fontSize: '1.1rem',
-                lineHeight: '1.7',
-                color: '#515154'
+                color: '#5d6d7e',
+                lineHeight: '1.8'
               }}>
-                전 세계 50개국에서 수백만 명의 사용자가 우리의 기술을 통해
-                더 나은 삶을 살아가고 있습니다.
+                축적된 경험과 전문성을 바탕으로 전략 수립부터 실행, 성과 측정까지 
+                전 과정에서 고객사와 함께합니다. 우리의 목표는 고객의 성공이며, 
+                이를 위해 최선을 다하고 있습니다.
               </p>
             </div>
             <div style={{
-              backgroundColor: '#ffffff',
-              borderRadius: '16px',
-              padding: '2rem',
-              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)'
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              borderRadius: '20px',
+              padding: '4rem',
+              color: 'white',
+              textAlign: 'center',
+              minHeight: '400px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
             }}>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '1.5rem'
-              }}>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{
-                    fontSize: '2.5rem',
-                    fontWeight: '700',
-                    color: '#007AFF',
-                    marginBottom: '0.5rem'
-                  }}>50+</div>
-                  <div style={{
-                    fontSize: '0.9rem',
-                    color: '#6e6e73',
-                    fontWeight: '500'
-                  }}>국가</div>
-                </div>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{
-                    fontSize: '2.5rem',
-                    fontWeight: '700',
-                    color: '#007AFF',
-                    marginBottom: '0.5rem'
-                  }}>10M+</div>
-                  <div style={{
-                    fontSize: '0.9rem',
-                    color: '#6e6e73',
-                    fontWeight: '500'
-                  }}>사용자</div>
-                </div>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{
-                    fontSize: '2.5rem',
-                    fontWeight: '700',
-                    color: '#007AFF',
-                    marginBottom: '0.5rem'
-                  }}>500+</div>
-                  <div style={{
-                    fontSize: '0.9rem',
-                    color: '#6e6e73',
-                    fontWeight: '500'
-                  }}>직원</div>
-                </div>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{
-                    fontSize: '2.5rem',
-                    fontWeight: '700',
-                    color: '#007AFF',
-                    marginBottom: '0.5rem'
-                  }}>15+</div>
-                  <div style={{
-                    fontSize: '0.9rem',
-                    color: '#6e6e73',
-                    fontWeight: '500'
-                  }}>년 경험</div>
-                </div>
-              </div>
+              <div style={{ fontSize: '4rem', marginBottom: '1.5rem' }}>🎯</div>
+              <h3 style={{ fontSize: '1.8rem', fontWeight: '600', marginBottom: '1rem' }}>
+                Our Mission
+              </h3>
+              <p style={{ fontSize: '1.2rem', opacity: 0.95 }}>
+                데이터와 전문성을 바탕으로<br />
+                고객의 비즈니스 가치를<br />
+                극대화합니다
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section style={{
-        padding: '80px 0',
-        backgroundColor: '#ffffff'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 1.5rem'
-        }}>
+      {/* Core Values */}
+      <section style={{ padding: '100px 0', background: '#f8f9fa' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <h2 style={{
               fontSize: '2.5rem',
-              fontWeight: '600',
-              color: '#1d1d1f',
+              fontWeight: '700',
+              color: '#2c3e50',
               marginBottom: '1rem'
             }}>
-              우리의 가치
+              핵심 가치
             </h2>
-            <p style={{
-              fontSize: '1.1rem',
-              color: '#6e6e73',
-              maxWidth: '600px',
-              margin: '0 auto'
-            }}>
-              우리가 추구하는 핵심 가치들은 모든 제품과 서비스에 반영됩니다.
+            <p style={{ fontSize: '1.1rem', color: '#7f8c8d' }}>
+              ProConsult가 지향하는 가치
             </p>
           </div>
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
             gap: '2rem'
           }}>
             {[
               {
+                icon: '🎯',
+                title: '전문성',
+                desc: '15년간 축적된 업계 최고의 전문 지식과 경험'
+              },
+              {
+                icon: '🤝',
+                title: '신뢰',
+                desc: '고객과의 약속을 최우선으로 하는 책임감'
+              },
+              {
+                icon: '💡',
                 title: '혁신',
-                description: '기존의 틀을 깨고 새로운 가능성을 탐구합니다.',
-                icon: '💡'
+                desc: '끊임없는 연구와 혁신으로 최적의 솔루션 제공'
               },
               {
-                title: '품질',
-                description: '최고 수준의 품질을 통해 고객의 신뢰를 얻습니다.',
-                icon: '⭐'
-              },
-              {
-                title: '지속가능성',
-                description: '환경과 사회를 생각하는 지속가능한 발전을 추구합니다.',
-                icon: '🌱'
+                icon: '🌟',
+                title: '성과',
+                desc: '실질적인 성과 창출에 집중하는 결과 중심'
               }
-            ].map((value, index) => (
-              <div key={index} style={{
-                backgroundColor: '#f8f9fa',
+            ].map((value, idx) => (
+              <div key={idx} style={{
+                background: 'white',
+                padding: '3rem 2rem',
                 borderRadius: '16px',
-                padding: '2rem',
                 textAlign: 'center',
-                transition: 'transform 0.2s ease',
-                cursor: 'pointer'
+                border: '1px solid #e8e8e8',
+                transition: 'all 0.3s ease'
               }}>
-                <div style={{
-                  fontSize: '3rem',
-                  marginBottom: '1rem'
-                }}>
-                  {value.icon}
-                </div>
+                <div style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}>{value.icon}</div>
                 <h3 style={{
                   fontSize: '1.5rem',
                   fontWeight: '600',
-                  color: '#1d1d1f',
+                  color: '#2c3e50',
                   marginBottom: '1rem'
                 }}>
                   {value.title}
                 </h3>
                 <p style={{
-                  fontSize: '1rem',
-                  color: '#515154',
+                  color: '#7f8c8d',
                   lineHeight: '1.6'
                 }}>
-                  {value.description}
+                  {value.desc}
                 </p>
               </div>
             ))}
@@ -250,112 +169,151 @@ export default function About() {
         </div>
       </section>
 
-      {/* Timeline Section */}
-      <section style={{
-        padding: '80px 0',
-        backgroundColor: '#fbfbfd'
-      }}>
-        <div style={{
-          maxWidth: '800px',
-          margin: '0 auto',
-          padding: '0 1.5rem'
-        }}>
+      {/* Team */}
+      <section style={{ padding: '100px 0', background: 'white' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <h2 style={{
               fontSize: '2.5rem',
-              fontWeight: '600',
-              color: '#1d1d1f',
+              fontWeight: '700',
+              color: '#2c3e50',
               marginBottom: '1rem'
             }}>
-              주요 성과
+              전문가 팀
             </h2>
+            <p style={{ fontSize: '1.1rem', color: '#7f8c8d' }}>
+              각 분야 최고의 전문가들이 함께합니다
+            </p>
           </div>
 
-          {[
-            {
-              year: "2010",
-              title: "InnovateCorp 설립",
-              description: "기술 혁신을 통한 더 나은 세상을 만들겠다는 비전으로 회사가 설립되었습니다."
-            },
-            {
-              year: "2015",
-              title: "글로벌 진출",
-              description: "아시아-태평양 지역으로 사업을 확장하며 국제적인 기업으로 성장했습니다."
-            },
-            {
-              year: "2018",
-              title: "AI 플랫폼 출시",
-              description: "혁신적인 AI 기반 플랫폼을 출시하여 업계의 새로운 표준을 제시했습니다."
-            },
-            {
-              year: "2021",
-              title: "지속가능성 이니셔티브",
-              description: "탄소 중립 목표를 선언하고 지속가능한 기술 개발에 집중하기 시작했습니다."
-            },
-            {
-              year: "2024",
-              title: "미래를 향한 도약",
-              description: "차세대 기술 개발과 글로벌 파트너십 확대를 통해 새로운 장을 열어가고 있습니다."
-            }
-          ].map((milestone, index) => (
-            <div key={index} style={{
-              display: 'flex',
-              marginBottom: index === 4 ? 0 : '3rem',
-              alignItems: 'flex-start'
-            }}>
-              <div style={{
-                flexShrink: 0,
-                width: '100px',
-                textAlign: 'right',
-                paddingRight: '2rem'
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '2.5rem'
+          }}>
+            {[
+              {
+                name: '김철수',
+                position: 'CEO & 대표 컨설턴트',
+                specialty: '경영 전략, 조직 개발',
+                experience: '20년 경력'
+              },
+              {
+                name: '이영희',
+                position: 'CFO',
+                specialty: '재무 컨설팅, 리스크 관리',
+                experience: '18년 경력'
+              },
+              {
+                name: '박민수',
+                position: '디지털 전환 총괄',
+                specialty: 'IT 전략, 디지털 혁신',
+                experience: '15년 경력'
+              },
+              {
+                name: '정수진',
+                position: '산업 전략 이사',
+                specialty: '제조/유통 컨설팅',
+                experience: '12년 경력'
+              }
+            ].map((member, idx) => (
+              <div key={idx} style={{
+                background: 'white',
+                padding: '2.5rem',
+                borderRadius: '16px',
+                border: '1px solid #e8e8e8',
+                textAlign: 'center',
+                transition: 'all 0.3s ease'
               }}>
                 <div style={{
-                  fontSize: '1.5rem',
-                  fontWeight: '700',
-                  color: '#007AFF'
-                }}>
-                  {milestone.year}
-                </div>
-              </div>
-              <div style={{
-                flexShrink: 0,
-                width: '1px',
-                backgroundColor: '#d2d2d7',
-                marginRight: '2rem',
-                position: 'relative',
-                minHeight: '60px'
-              }}>
-                <div style={{
-                  position: 'absolute',
-                  width: '12px',
-                  height: '12px',
-                  backgroundColor: '#007AFF',
+                  width: '120px',
+                  height: '120px',
                   borderRadius: '50%',
-                  left: '-6px',
-                  top: '8px'
-                }}></div>
-              </div>
-              <div style={{ flex: 1 }}>
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  margin: '0 auto 1.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '3rem',
+                  color: 'white'
+                }}>
+                  👤
+                </div>
                 <h3 style={{
                   fontSize: '1.3rem',
-                  fontWeight: '600',
-                  marginBottom: '0.5rem',
-                  color: '#1d1d1f'
+                  fontWeight: '700',
+                  color: '#2c3e50',
+                  marginBottom: '0.5rem'
                 }}>
-                  {milestone.title}
+                  {member.name}
                 </h3>
                 <p style={{
                   fontSize: '1rem',
-                  color: '#515154',
-                  lineHeight: '1.6'
+                  color: '#3498db',
+                  fontWeight: '600',
+                  marginBottom: '1rem'
                 }}>
-                  {milestone.description}
+                  {member.position}
+                </p>
+                <p style={{
+                  fontSize: '0.95rem',
+                  color: '#7f8c8d',
+                  marginBottom: '0.5rem'
+                }}>
+                  {member.specialty}
+                </p>
+                <p style={{
+                  fontSize: '0.9rem',
+                  color: '#95a5a6',
+                  fontWeight: '500'
+                }}>
+                  {member.experience}
                 </p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
-    </div>
+
+      {/* CTA Section */}
+      <section style={{
+        padding: '100px 0',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        color: 'white',
+        textAlign: 'center'
+      }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 20px' }}>
+          <h2 style={{
+            fontSize: '2.5rem',
+            fontWeight: '700',
+            marginBottom: '1.5rem'
+          }}>
+            ProConsult와 함께<br />
+            새로운 도약을 시작하세요
+          </h2>
+          <p style={{
+            fontSize: '1.2rem',
+            marginBottom: '3rem',
+            opacity: 0.95
+          }}>
+            전문 컨설턴트가 귀사의 성장을 위한<br />
+            최적의 솔루션을 제안해드립니다
+          </p>
+          <Link href="/contact" style={{
+            background: 'white',
+            color: '#667eea',
+            padding: '18px 40px',
+            borderRadius: '8px',
+            textDecoration: 'none',
+            fontWeight: '600',
+            fontSize: '1.1rem',
+            display: 'inline-block',
+            transition: 'all 0.3s ease'
+          }}>
+            무료 상담 신청
+          </Link>
+        </div>
+      </section>
+    </main>
   )
 }

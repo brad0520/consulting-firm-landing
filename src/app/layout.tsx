@@ -1,26 +1,23 @@
 import type { Metadata } from "next";
-import { ReactNode } from "react";
 import "./globals.css";
-import { techCorpConfig } from "@/lib/config";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import ScrollHandler from "@/components/ScrollHandler";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: techCorpConfig.brand.name,
-    template: `%s | ${techCorpConfig.brand.name}`,
+    default: "ProConsult - 전문 컨설팅 파트너",
+    template: `%s | ProConsult`,
   },
-  description: techCorpConfig.brand.description,
-  keywords: ["기술", "기업", "혁신", "IT", "소프트웨어", "디지털", "회사소개"],
-  authors: [{ name: techCorpConfig.company.name }],
-  creator: techCorpConfig.company.name,
+  description: "15년간의 풍부한 경험과 검증된 방법론으로 고객의 비즈니스 성장을 이끌어내는 전문 컨설팅 파트너입니다.",
+  keywords: ["컨설팅", "경영 전략", "프로세스 혁신", "성과 관리", "조직 개발", "디지털 전환"],
+  authors: [{ name: "ProConsult" }],
+  creator: "ProConsult",
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    siteName: techCorpConfig.brand.name,
-    title: techCorpConfig.brand.name,
-    description: techCorpConfig.brand.description,
+    siteName: "ProConsult",
+    title: "ProConsult - 전문 컨설팅 파트너",
+    description: "15년간의 풍부한 경험과 검증된 방법론으로 고객의 비즈니스 성장을 이끌어내는 전문 컨설팅 파트너입니다.",
   },
   robots: {
     index: true,
@@ -39,29 +36,22 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
       <body style={{
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+        fontFamily: "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
         margin: 0,
         padding: 0,
         lineHeight: 1.6,
-        color: '#1d1d1f'
+        color: '#2c3e50',
+        background: '#ffffff',
+        overflowX: 'hidden'
       }}>
-        <ScrollHandler />
-        <div style={{
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <Header />
-          <main style={{ flex: 1 }}>
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );
