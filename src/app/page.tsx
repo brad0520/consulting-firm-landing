@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function ConsultingHomePage() {
   const [activeTestimonial, setActiveTestimonial] = useState(0)
@@ -18,10 +19,24 @@ export default function ConsultingHomePage() {
       {/* Hero Section */}
       <section style={{
         padding: '140px 0 100px',
-        background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)',
-        position: 'relative'
+        position: 'relative',
+        minHeight: '90vh',
+        display: 'flex',
+        alignItems: 'center'
       }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+        <Image
+          src="/images/hero.jpg"
+          alt="Hero Background"
+          fill
+          style={{ objectFit: 'cover' }}
+          priority
+        />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(135deg, rgba(248,249,250,0.92) 0%, rgba(255,255,255,0.88) 100%)'
+        }}></div>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px', position: 'relative', zIndex: 2 }}>
           <div style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
