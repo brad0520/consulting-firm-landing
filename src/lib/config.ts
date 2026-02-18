@@ -1,33 +1,27 @@
-export const techCorpConfig = {
+export const siteConfig = {
   brand: {
-    name: "TechCorp",
-    description: "혁신적인 기술로 더 나은 미래를 만들어가는 글로벌 기술 기업입니다.",
+    name: "ProConsult",
+    description: "15년간의 풍부한 경험과 검증된 방법론으로 고객의 비즈니스 성장을 이끌어내는 전문 컨설팅 파트너입니다.",
     logo: "/logo.svg"
   },
   company: {
-    name: "TechCorp Inc.",
-    address: "123 Innovation Drive, Tech Valley, CA 94043",
-    phone: "1-800-TECH-CORP",
-    email: "contact@techcorp.com"
+    name: "ProConsult Inc.",
+    address: "서울시 강남구 테헤란로 123 컨설팅타워 15층",
+    phone: "02-1234-5678",
+    email: "contact@proconsult.co.kr"
   },
   navigation: {
     main: [
-      { name: "소개", href: "/about" },
-      { name: "가치", href: "/values" },
-      { name: "리더십", href: "/leadership" },
-      { name: "채용", href: "/careers" },
-      { name: "뉴스룸", href: "/newsroom" },
-      { name: "투자자", href: "/investors" }
+      { name: "회사소개", href: "/about" },
+      { name: "서비스", href: "/services" },
+      { name: "성공사례", href: "/cases" },
+      { name: "솔루션", href: "/solutions" },
+      { name: "문의하기", href: "/contact" }
     ]
   },
   colors: {
-    primary: "#007AFF",
-    secondary: "#5856D6",
-    success: "#30D158",
-    warning: "#FF9F0A",
-    danger: "#FF3B30",
-    background: "#FFFFFF",
-    surface: "#F8F9FA",
-    text: "#1D1D1F"
+    primary: "#1e3a5f",
+    accent: "#2563eb",
+    text: "#1e293b"
   }
 }

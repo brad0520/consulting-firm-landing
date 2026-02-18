@@ -1,82 +1,37 @@
-'use client'
-
-import React from 'react'
 import Link from 'next/link'
-import { techCorpConfig } from '@/lib/config'
+import { siteConfig } from '@/lib/config'
 
 export default function Footer() {
   return (
-    <footer style={{
-      backgroundColor: '#f8f9fa',
-      borderTop: '1px solid rgba(0, 0, 0, 0.1)',
-      padding: '3rem 0 2rem'
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 1.5rem'
-      }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '2rem',
-          marginBottom: '2rem'
-        }}>
+    <footer className="bg-slate-900 text-gray-300">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand Section */}
-          <div>
-            <h3 style={{
-              fontSize: '1.2rem',
-              fontWeight: '600',
-              color: '#1d1d1f',
-              marginBottom: '1rem'
-            }}>
-              {techCorpConfig.brand.name}
+          <div className="md:col-span-2 lg:col-span-1">
+            <h3 className="text-xl font-bold text-white mb-4">
+              {siteConfig.brand.name}
             </h3>
-            <p style={{
-              color: '#6e6e73',
-              lineHeight: 1.6,
-              marginBottom: '1rem'
-            }}>
-              {techCorpConfig.brand.description}
+            <p className="text-gray-400 leading-relaxed text-sm">
+              {siteConfig.brand.description}
             </p>
           </div>
 
-          {/* Company Info */}
+          {/* Services Links */}
           <div>
-            <h4 style={{
-              fontSize: '1rem',
-              fontWeight: '600',
-              color: '#1d1d1f',
-              marginBottom: '1rem'
-            }}>
-              회사 정보
+            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+              서비스
             </h4>
-            <ul style={{
-              listStyle: 'none',
-              padding: 0,
-              margin: 0
-            }}>
+            <ul className="space-y-3">
               {[
-                { name: '소개', href: '/about' },
-                { name: '가치', href: '/values' },
-                { name: '리더십', href: '/leadership' },
-                { name: '채용', href: '/careers' }
+                { name: '경영 전략', href: '/services' },
+                { name: '프로세스 혁신', href: '/services' },
+                { name: '디지털 전환', href: '/services' },
+                { name: '재무 컨설팅', href: '/services' },
               ].map((item) => (
-                <li key={item.name} style={{ marginBottom: '0.5rem' }}>
+                <li key={item.name}>
                   <Link
                     href={item.href}
-                    style={{
-                      color: '#6e6e73',
-                      textDecoration: 'none',
-                      fontSize: '0.9rem',
-                      transition: 'color 0.3s ease'
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.color = '#007AFF'
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.color = '#6e6e73'
-                    }}
+                    className="text-sm text-gray-400 hover:text-white transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -85,40 +40,22 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* News & Investors */}
+          {/* Company Links */}
           <div>
-            <h4 style={{
-              fontSize: '1rem',
-              fontWeight: '600',
-              color: '#1d1d1f',
-              marginBottom: '1rem'
-            }}>
-              소식 및 투자
+            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+              회사 정보
             </h4>
-            <ul style={{
-              listStyle: 'none',
-              padding: 0,
-              margin: 0
-            }}>
+            <ul className="space-y-3">
               {[
-                { name: '뉴스룸', href: '/newsroom' },
-                { name: '투자자 정보', href: '/investors' }
+                { name: '회사소개', href: '/about' },
+                { name: '성공사례', href: '/cases' },
+                { name: '솔루션', href: '/solutions' },
+                { name: '문의하기', href: '/contact' },
               ].map((item) => (
-                <li key={item.name} style={{ marginBottom: '0.5rem' }}>
+                <li key={item.name}>
                   <Link
                     href={item.href}
-                    style={{
-                      color: '#6e6e73',
-                      textDecoration: 'none',
-                      fontSize: '0.9rem',
-                      transition: 'color 0.3s ease'
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.color = '#007AFF'
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.color = '#6e6e73'
-                    }}
+                    className="text-sm text-gray-400 hover:text-white transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -129,44 +66,21 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 style={{
-              fontSize: '1rem',
-              fontWeight: '600',
-              color: '#1d1d1f',
-              marginBottom: '1rem'
-            }}>
+            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
               연락처
             </h4>
-            <div style={{
-              color: '#6e6e73',
-              fontSize: '0.9rem',
-              lineHeight: 1.6
-            }}>
-              <p style={{ marginBottom: '0.5rem' }}>
-                {techCorpConfig.company.phone}
-              </p>
-              <p style={{ marginBottom: '0.5rem' }}>
-                {techCorpConfig.company.email}
-              </p>
-              <p style={{ margin: 0 }}>
-                {techCorpConfig.company.address}
-              </p>
+            <div className="space-y-3 text-sm text-gray-400">
+              <p>{siteConfig.company.phone}</p>
+              <p>{siteConfig.company.email}</p>
+              <p className="leading-relaxed">{siteConfig.company.address}</p>
             </div>
           </div>
         </div>
 
         {/* Copyright */}
-        <div style={{
-          borderTop: '1px solid rgba(0, 0, 0, 0.1)',
-          paddingTop: '2rem',
-          textAlign: 'center'
-        }}>
-          <p style={{
-            color: '#6e6e73',
-            fontSize: '0.9rem',
-            margin: 0
-          }}>
-            &copy; 2024 {techCorpConfig.company.name}. All rights reserved.
+        <div className="border-t border-slate-800 pt-8 text-center">
+          <p className="text-sm text-gray-500">
+            &copy; {new Date().getFullYear()} {siteConfig.company.name}. All rights reserved.
           </p>
         </div>
       </div>

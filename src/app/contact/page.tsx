@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -9,7 +10,7 @@ export default function ContactPage() {
     email: '',
     phone: '',
     service: '',
-    message: ''
+    message: '',
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -21,199 +22,120 @@ export default function ContactPage() {
       email: '',
       phone: '',
       service: '',
-      message: ''
+      message: '',
     })
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   }
 
   return (
-    <main style={{ paddingTop: '80px' }}>
+    <main>
       {/* Hero Section */}
-      <section style={{
-        padding: '100px 0',
-        background: 'linear-gradient(135deg, #3498db 0%, #2980b9 100%)',
-        color: 'white',
-        textAlign: 'center'
-      }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
-          <h1 style={{
-            fontSize: '3rem',
-            fontWeight: '700',
-            marginBottom: '1.5rem'
-          }}>
+      <section className="relative py-28 md:py-36">
+        <Image
+          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
+          alt="문의하기"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 to-slate-900/80" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             무료 상담 신청
           </h1>
-          <p style={{
-            fontSize: '1.3rem',
-            opacity: 0.95,
-            maxWidth: '700px',
-            margin: '0 auto'
-          }}>
-            전문 컨설턴트가 귀사의 과제를 분석하고<br />
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+            전문 컨설턴트가 귀사의 과제를 분석하고
             최적의 솔루션을 제안해드립니다
           </p>
         </div>
       </section>
 
       {/* Contact Form & Info */}
-      <section style={{ padding: '100px 0', background: 'white' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '4rem',
-            alignItems: 'start'
-          }}>
+      <section className="py-20 md:py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Contact Form */}
             <div>
-              <h2 style={{
-                fontSize: '2rem',
-                fontWeight: '700',
-                color: '#2c3e50',
-                marginBottom: '1.5rem'
-              }}>
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
                 상담 신청서
               </h2>
-              <p style={{
-                fontSize: '1.1rem',
-                color: '#7f8c8d',
-                marginBottom: '2rem'
-              }}>
+              <p className="text-gray-500 mb-8">
                 아래 양식을 작성해주시면 영업일 기준 1~2일 내에 연락드립니다.
               </p>
 
-              <form onSubmit={handleSubmit} style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1.5rem'
-              }}>
-                <div>
-                  <label style={{
-                    display: 'block',
-                    fontSize: '0.95rem',
-                    fontWeight: '600',
-                    color: '#2c3e50',
-                    marginBottom: '0.5rem'
-                  }}>
-                    이름 *
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    style={{
-                      width: '100%',
-                      padding: '14px',
-                      fontSize: '1rem',
-                      border: '1px solid #e8e8e8',
-                      borderRadius: '8px',
-                      outline: 'none',
-                      transition: 'all 0.3s ease'
-                    }}
-                    placeholder="홍길동"
-                  />
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-900 mb-2">
+                      이름 *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      placeholder="홍길동"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-900 mb-2">
+                      회사명 *
+                    </label>
+                    <input
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      placeholder="(주)회사명"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-900 mb-2">
+                      이메일 *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      placeholder="example@company.com"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-900 mb-2">
+                      연락처 *
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      placeholder="010-1234-5678"
+                    />
+                  </div>
                 </div>
 
                 <div>
-                  <label style={{
-                    display: 'block',
-                    fontSize: '0.95rem',
-                    fontWeight: '600',
-                    color: '#2c3e50',
-                    marginBottom: '0.5rem'
-                  }}>
-                    회사명 *
-                  </label>
-                  <input
-                    type="text"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    required
-                    style={{
-                      width: '100%',
-                      padding: '14px',
-                      fontSize: '1rem',
-                      border: '1px solid #e8e8e8',
-                      borderRadius: '8px',
-                      outline: 'none'
-                    }}
-                    placeholder="(주)회사명"
-                  />
-                </div>
-
-                <div>
-                  <label style={{
-                    display: 'block',
-                    fontSize: '0.95rem',
-                    fontWeight: '600',
-                    color: '#2c3e50',
-                    marginBottom: '0.5rem'
-                  }}>
-                    이메일 *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    style={{
-                      width: '100%',
-                      padding: '14px',
-                      fontSize: '1rem',
-                      border: '1px solid #e8e8e8',
-                      borderRadius: '8px',
-                      outline: 'none'
-                    }}
-                    placeholder="example@company.com"
-                  />
-                </div>
-
-                <div>
-                  <label style={{
-                    display: 'block',
-                    fontSize: '0.95rem',
-                    fontWeight: '600',
-                    color: '#2c3e50',
-                    marginBottom: '0.5rem'
-                  }}>
-                    연락처 *
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                    style={{
-                      width: '100%',
-                      padding: '14px',
-                      fontSize: '1rem',
-                      border: '1px solid #e8e8e8',
-                      borderRadius: '8px',
-                      outline: 'none'
-                    }}
-                    placeholder="010-1234-5678"
-                  />
-                </div>
-
-                <div>
-                  <label style={{
-                    display: 'block',
-                    fontSize: '0.95rem',
-                    fontWeight: '600',
-                    color: '#2c3e50',
-                    marginBottom: '0.5rem'
-                  }}>
+                  <label className="block text-sm font-semibold text-slate-900 mb-2">
                     관심 서비스 *
                   </label>
                   <select
@@ -221,15 +143,7 @@ export default function ContactPage() {
                     value={formData.service}
                     onChange={handleChange}
                     required
-                    style={{
-                      width: '100%',
-                      padding: '14px',
-                      fontSize: '1rem',
-                      border: '1px solid #e8e8e8',
-                      borderRadius: '8px',
-                      outline: 'none',
-                      cursor: 'pointer'
-                    }}
+                    className="w-full px-4 py-3 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white cursor-pointer"
                   >
                     <option value="">선택해주세요</option>
                     <option value="strategy">경영 전략</option>
@@ -243,13 +157,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label style={{
-                    display: 'block',
-                    fontSize: '0.95rem',
-                    fontWeight: '600',
-                    color: '#2c3e50',
-                    marginBottom: '0.5rem'
-                  }}>
+                  <label className="block text-sm font-semibold text-slate-900 mb-2">
                     문의 내용
                   </label>
                   <textarea
@@ -257,40 +165,14 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleChange}
                     rows={6}
-                    style={{
-                      width: '100%',
-                      padding: '14px',
-                      fontSize: '1rem',
-                      border: '1px solid #e8e8e8',
-                      borderRadius: '8px',
-                      outline: 'none',
-                      resize: 'vertical'
-                    }}
+                    className="w-full px-4 py-3 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-vertical"
                     placeholder="프로젝트에 대해 간단히 설명해주세요."
                   />
                 </div>
 
                 <button
                   type="submit"
-                  style={{
-                    background: '#3498db',
-                    color: 'white',
-                    padding: '16px 32px',
-                    fontSize: '1.1rem',
-                    fontWeight: '600',
-                    border: 'none',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#2980b9'
-                    e.currentTarget.style.transform = 'translateY(-2px)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '#3498db'
-                    e.currentTarget.style.transform = 'translateY(0)'
-                  }}
+                  className="w-full bg-blue-600 text-white py-4 px-8 text-lg font-semibold rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors min-h-[44px]"
                 >
                   상담 신청하기
                 </button>
@@ -299,206 +181,89 @@ export default function ContactPage() {
 
             {/* Contact Info */}
             <div>
-              <h2 style={{
-                fontSize: '2rem',
-                fontWeight: '700',
-                color: '#2c3e50',
-                marginBottom: '1.5rem'
-              }}>
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-8">
                 연락처 정보
               </h2>
 
-              <div style={{
-                background: '#f8f9fa',
-                padding: '2.5rem',
-                borderRadius: '16px',
-                marginBottom: '2rem'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '2rem'
-                }}>
-                  <div>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '1rem',
-                      marginBottom: '0.5rem'
-                    }}>
-                      <span style={{ fontSize: '1.5rem' }}>📞</span>
+              <div className="bg-gray-50 rounded-2xl p-8 mb-8">
+                <div className="space-y-8">
+                  {[
+                    {
+                      icon: (
+                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                        </svg>
+                      ),
+                      label: '전화',
+                      value: '02-1234-5678',
+                    },
+                    {
+                      icon: (
+                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                        </svg>
+                      ),
+                      label: '이메일',
+                      value: 'contact@proconsult.co.kr',
+                    },
+                    {
+                      icon: (
+                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                        </svg>
+                      ),
+                      label: '주소',
+                      value: '서울시 강남구 테헤란로 123\n컨설팅타워 15층',
+                    },
+                    {
+                      icon: (
+                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                      ),
+                      label: '운영 시간',
+                      value: '평일 09:00 - 18:00\n(주말 및 공휴일 휴무)',
+                    },
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
+                        {item.icon}
+                      </div>
                       <div>
-                        <div style={{
-                          fontSize: '0.9rem',
-                          color: '#7f8c8d',
-                          marginBottom: '0.25rem'
-                        }}>
-                          전화
-                        </div>
-                        <div style={{
-                          fontSize: '1.2rem',
-                          fontWeight: '600',
-                          color: '#2c3e50'
-                        }}>
-                          02-1234-5678
-                        </div>
+                        <p className="text-sm text-gray-400 mb-1">{item.label}</p>
+                        <p className="text-slate-900 font-semibold whitespace-pre-line leading-relaxed">
+                          {item.value}
+                        </p>
                       </div>
                     </div>
-                  </div>
-
-                  <div>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '1rem',
-                      marginBottom: '0.5rem'
-                    }}>
-                      <span style={{ fontSize: '1.5rem' }}>📧</span>
-                      <div>
-                        <div style={{
-                          fontSize: '0.9rem',
-                          color: '#7f8c8d',
-                          marginBottom: '0.25rem'
-                        }}>
-                          이메일
-                        </div>
-                        <div style={{
-                          fontSize: '1.2rem',
-                          fontWeight: '600',
-                          color: '#2c3e50'
-                        }}>
-                          info@proconsult.co.kr
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '1rem',
-                      marginBottom: '0.5rem'
-                    }}>
-                      <span style={{ fontSize: '1.5rem' }}>📍</span>
-                      <div>
-                        <div style={{
-                          fontSize: '0.9rem',
-                          color: '#7f8c8d',
-                          marginBottom: '0.25rem'
-                        }}>
-                          주소
-                        </div>
-                        <div style={{
-                          fontSize: '1.1rem',
-                          fontWeight: '600',
-                          color: '#2c3e50',
-                          lineHeight: '1.6'
-                        }}>
-                          서울시 강남구 테헤란로 123<br />
-                          ProConsult 빌딩 10층
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '1rem',
-                      marginBottom: '0.5rem'
-                    }}>
-                      <span style={{ fontSize: '1.5rem' }}>🕐</span>
-                      <div>
-                        <div style={{
-                          fontSize: '0.9rem',
-                          color: '#7f8c8d',
-                          marginBottom: '0.25rem'
-                        }}>
-                          운영 시간
-                        </div>
-                        <div style={{
-                          fontSize: '1.1rem',
-                          fontWeight: '600',
-                          color: '#2c3e50',
-                          lineHeight: '1.6'
-                        }}>
-                          평일 09:00 - 18:00<br />
-                          <span style={{ fontSize: '0.95rem', color: '#7f8c8d' }}>
-                            (주말 및 공휴일 휴무)
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
 
               {/* FAQ */}
-              <div style={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                padding: '2.5rem',
-                borderRadius: '16px',
-                color: 'white'
-              }}>
-                <h3 style={{
-                  fontSize: '1.5rem',
-                  fontWeight: '700',
-                  marginBottom: '1.5rem'
-                }}>
-                  자주 묻는 질문
-                </h3>
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '1.5rem'
-                }}>
-                  <div>
-                    <div style={{
-                      fontSize: '1rem',
-                      fontWeight: '600',
-                      marginBottom: '0.5rem'
-                    }}>
-                      Q. 상담은 무료인가요?
+              <div className="bg-gradient-to-br from-slate-800 to-blue-900 rounded-2xl p-8 text-white">
+                <h3 className="text-xl font-bold mb-6">자주 묻는 질문</h3>
+                <div className="space-y-6">
+                  {[
+                    {
+                      q: '상담은 무료인가요?',
+                      a: '네, 초기 상담은 무료로 진행됩니다.',
+                    },
+                    {
+                      q: '프로젝트 기간은 얼마나 걸리나요?',
+                      a: '프로젝트 규모에 따라 3개월~12개월 정도 소요됩니다.',
+                    },
+                    {
+                      q: '어떤 산업 분야를 다루나요?',
+                      a: '제조, 금융, 유통, IT, 헬스케어 등 다양한 산업 분야의 경험이 있습니다.',
+                    },
+                  ].map((faq, idx) => (
+                    <div key={idx}>
+                      <p className="font-semibold mb-1">Q. {faq.q}</p>
+                      <p className="text-gray-300 text-sm">A. {faq.a}</p>
                     </div>
-                    <div style={{
-                      fontSize: '0.95rem',
-                      opacity: 0.9
-                    }}>
-                      A. 네, 초기 상담은 무료로 진행됩니다.
-                    </div>
-                  </div>
-                  <div>
-                    <div style={{
-                      fontSize: '1rem',
-                      fontWeight: '600',
-                      marginBottom: '0.5rem'
-                    }}>
-                      Q. 프로젝트 기간은 얼마나 걸리나요?
-                    </div>
-                    <div style={{
-                      fontSize: '0.95rem',
-                      opacity: 0.9
-                    }}>
-                      A. 프로젝트 규모에 따라 3개월~12개월 정도 소요됩니다.
-                    </div>
-                  </div>
-                  <div>
-                    <div style={{
-                      fontSize: '1rem',
-                      fontWeight: '600',
-                      marginBottom: '0.5rem'
-                    }}>
-                      Q. 어떤 산업 분야를 다루나요?
-                    </div>
-                    <div style={{
-                      fontSize: '0.95rem',
-                      opacity: 0.9
-                    }}>
-                      A. 제조, 금융, 유통, IT, 헬스케어 등 다양한 산업 분야의 경험이 있습니다.
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
