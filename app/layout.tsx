@@ -1,15 +1,7 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
-const notoSansKR = Noto_Sans_KR({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-noto-sans",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -41,10 +33,7 @@ export const metadata: Metadata = {
     description: "데이터 기반 전략 수립과 실행 중심 컨설팅으로 기업의 지속 가능한 성장을 설계합니다.",
     images: ["/og-image.jpg"],
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -53,8 +42,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={notoSansKR.variable}>
-      <body className="font-sans overflow-x-hidden bg-white">
+    <html lang="ko">
+      <body className="antialiased bg-cream text-ink overflow-x-hidden">
         <Header />
         {children}
         <Footer />

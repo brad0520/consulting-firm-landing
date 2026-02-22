@@ -17,13 +17,13 @@ export const siteConfig = {
       { name: "회사소개", href: "/about" },
       { name: "서비스", href: "/services" },
       { name: "성공사례", href: "/cases" },
-      { name: "솔루션", href: "/solutions" },
+      { name: "인사이트", href: "/insights" },
       { name: "문의하기", href: "/contact" }
     ]
   },
   colors: {
-    primary: "#102a43",
-    accent: "#27ab83",
-    text: "#102a43"
+    primary: "#111111",
+    accent: "#8B2252",
+    text: "#111111"
   }
 }
